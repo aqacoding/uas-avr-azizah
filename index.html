@@ -1,0 +1,54 @@
+<!-- NAMA: AZIZAH QOLBU ANTIKA 
+NPM: 20552011079 
+KELAS: TIF 221 MC -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AR Image Tracking</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="games.html"></script>
+  </head>
+  <body>
+    <a-scene
+      embedded
+      arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+    >
+      <!-- Load marker image -->
+      <a-assets>
+        <a-asset-item id="marker" src="assets/games.patt"></a-asset-item>
+      </a-assets>
+
+      <!-- Define marker with clickable object -->
+      <a-marker type="pattern" url="assets/games.patt">
+        <a-plane
+          position="0 0 0"
+          rotation="-90 0 0"
+          width="1"
+          height="1"
+          color="transparent"
+          class="clickable"
+          cursor-listener
+        ></a-plane>
+      </a-marker>
+
+      <!-- Camera entity -->
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <script>
+      // Add event listener to the clickable plane
+      AFRAME.registerComponent("cursor-listener", {
+        init: function () {
+          var el = this.el;
+          el.addEventListener("click", function () {
+            window.location.href = "games.html";
+          });
+        },
+      });
+    </script>
+  </body>
+</html>
